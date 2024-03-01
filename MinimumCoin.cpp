@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+const int INF = 1e2;
 
 int minCoins(vector<int> &coins, int n, int value)
 {
@@ -12,19 +13,19 @@ int minCoins(vector<int> &coins, int n, int value)
          if (v == 0)
             dp[i][v] = 0;
          else if (i == 0)
-            dp[i][v] = INT_MAX;
+            dp[i][v] = INF;
          else if (coins[i - 1] <= v)
             dp[i][v] = min(dp[i - 1][v], 1 + dp[i][v - coins[i - 1]]);
          else
             dp[i][v] = dp[i - 1][v];
 
          if (i != 0)
-            cout << setw(2) << dp[i][v] << " ";
+            cout << setw(3) << dp[i][v] << " ";
       }
       cout << endl;
    }
 
-   return dp[n][value] == INT_MAX ? -1 : dp[n][value];
+   return dp[n][value];
 }
 
 int main()
