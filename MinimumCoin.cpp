@@ -4,11 +4,12 @@ const int INF = 1e2;
 
 int minCoins(vector<int> &coins, int n, int value)
 {
+   int i, v;
    int dp[n + 1][value + 1];
 
-   for (int i = 0; i <= n; i++)
+   for (i = 0; i <= n; i++)
    {
-      for (int v = 0; v <= value; v++)
+      for (v = 0; v <= value; v++)
       {
          if (v == 0)
             dp[i][v] = 0;
@@ -25,6 +26,23 @@ int minCoins(vector<int> &coins, int n, int value)
       cout << endl;
    }
 
+   // Backtracking
+   i = n, v = value;
+   vector<int> usedCoins;
+   while (i > 0 && v > 0)
+   {
+      if (dp[i][v] != dp[i - 1][v])
+      {
+         usedCoins.push_back(coins[i - 1]);
+         v -= coins[i - 1];
+      }
+      --i;
+   }
+
+   reverse(usedCoins.begin(), usedCoins.end());
+   for (int x : usedCoins)
+      cout << x << " ";
+   cout << endl;
    return dp[n][value];
 }
 
