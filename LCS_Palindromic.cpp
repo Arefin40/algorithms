@@ -53,8 +53,8 @@ int main()
    cout << "Enter a string: ";
    cin >> str;
 
-   srev = str;
-   reverse(str.begin(), str.end());
+   srev = str;                        // copy original string
+   reverse(srev.begin(), srev.end()); // reverse that string
    LCS(str, srev);
 
    return 0;
